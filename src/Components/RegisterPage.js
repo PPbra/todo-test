@@ -1,6 +1,7 @@
 import React from 'react';
 import {register} from "../Services/APIServices";
 import Redirect from "react-router-dom/es/Redirect";
+import '../StyleSheets/RegisterPage.css';
 
 class RegisterPage extends React.Component {
 
@@ -8,8 +9,9 @@ class RegisterPage extends React.Component {
         isRegister: false,
     };
 
-    registerIt = () => {
+    registerIt = (e) => {
 
+        e.preventDefault();
         const email = document.getElementById('email').value;
         const name = document.getElementById('name').value;
         const password = document.getElementById('password').value;
@@ -18,12 +20,16 @@ class RegisterPage extends React.Component {
         document.getElementById('password').value = '';
         document.getElementById('repassword').value = '';
 
+
         if (!(password === rePassword && (email !== '' && name !== '' && password !== '' && rePassword !== ''))) {
             window.alert("something wrong! type again?");
         }
         else {
             register({email, password, name})
                 .then(response => {
+
+                    console.log("akjsdhkad");
+
                     this.setState({
                         isRegister: true,
                     });
@@ -39,24 +45,24 @@ class RegisterPage extends React.Component {
         const success = this.state.isRegister;
 
         if(success){
-            return(<Redirect to={'/login'}/>);
+            return(<Redirect to={'/'}/>);
         }
         else {
 
 
 
             return(
-                <form>
-                    <input placeholder={'name'} type={'word'} id={'name'}/>
-                    <br/>
-                    <input placeholder={'email'} type={'word'} id={'email'}/>
-                    <br/>
-                    <input placeholder={'password'} type={'password'} id={'password'}/>
-                    <br/>
-                    <input placeholder={'rewrite password'} type={'password'} id={'repassword'}/>
-                    <br/>
-                    <button type={'button'} onClick={this.registerIt}>Register!</button>
-                </form>
+                <div id="register-box">
+                    <form className="registerForm">
+                        <h1 id={"singuph1"}>Sign up</h1>
+
+                        <input type="text" name="username" placeholder="Username" id={"name"} />
+                        <input type="text" name="email" placeholder="E-mail" id={"email"}/>
+                        <input type="password" name="password" placeholder="Password" id={"password"}/>
+                        <input type="password" name="password2" placeholder="Retype password"  id={"repassword"}/>
+                        <input type="submit" name="signup_submit" value="Sign me up" onClick={this.registerIt}/>
+                    </form>
+                </div>
 
             );
         }
@@ -65,6 +71,8 @@ class RegisterPage extends React.Component {
 
 
 }
+
+
 
 
 export default RegisterPage;

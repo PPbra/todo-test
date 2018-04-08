@@ -9,7 +9,6 @@ class NavBar extends  React.Component {
 
     render(){
 
-        /*const auth = this.props.authIn;*/
 
         let  auth;
 

@@ -6,11 +6,10 @@ class LogoutPage extends React.Component{
 
     render(){
 
-/*        this.props.appAuthChange(false);*/
         deleteTokenFromStorage();
 
         return(
-            <Redirect to={'./login'}/>
+            <Redirect to={'./'}/>
         )
     }
 

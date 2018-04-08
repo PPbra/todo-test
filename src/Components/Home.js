@@ -8,6 +8,7 @@ import {getTokenFromStorage} from "../Services/LocalStorageServices";
 
 
 
+
 class Home extends  React.Component{
 
     constructor(props){
@@ -27,7 +28,8 @@ class Home extends  React.Component{
 
 
     saveTodo = () =>{
-        fetchTodos().then(object =>{
+        fetchTodos()
+            .then(object =>{
 
             if(object.success){
                 this.setState({
@@ -75,7 +77,7 @@ class Home extends  React.Component{
 
     render(){
 
-        /*const isLogin = this.props.appAuthHome;*/
+
 
         let  isLogin;
 
